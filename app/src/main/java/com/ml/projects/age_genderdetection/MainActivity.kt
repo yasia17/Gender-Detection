@@ -40,6 +40,10 @@ class MainActivity : AppCompatActivity() {
     // UI elements
     private lateinit var sampleImageView : ImageView
     private lateinit var infoTextView : TextView
+
+    private lateinit var TextView1 : TextView
+    private lateinit var  button2 : Button
+
     private lateinit var ageOutputTextView : TextView
     private lateinit var genderOutputTextView : TextView
     private lateinit var inferenceSpeedTextView : TextView
@@ -85,13 +89,38 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+        button2 = findViewById(R.id.button2)
+        button2.setVisibility(View.INVISIBLE);
+
         // Initialize the UI elements
         sampleImageView = findViewById(R.id.sample_input_imageview)
+
+        sampleImageView.setVisibility(View.INVISIBLE);
+
         infoTextView = findViewById( R.id.info_textView )
+
+        infoTextView.setVisibility(View.INVISIBLE);
+
         ageOutputTextView = findViewById( R.id.age_output_textView )
+
+        ageOutputTextView.setVisibility(View.INVISIBLE);
+
         genderOutputTextView = findViewById( R.id.gender_output_textview )
+
+        genderOutputTextView.setVisibility(View.INVISIBLE);
+
         resultsLayout = findViewById( R.id.results_layout )
+
+        resultsLayout.setVisibility(View.INVISIBLE);
+
+
         inferenceSpeedTextView = findViewById( R.id.inference_speed_textView )
+
+        inferenceSpeedTextView.setVisibility(View.INVISIBLE);
+
+
+
 
         // A ProgressDialog to notify the user that the images are being processed.
         progressDialog = ProgressDialog( this )
@@ -119,22 +148,53 @@ class MainActivity : AppCompatActivity() {
 
     private fun showModelInitDialog() {
 
-        // AlertDialog.Builder which holds the model_init_dialog.xml layout.
+//        // AlertDialog.Builder which holds the model_init_dialog.xml layout.
+//        val alertDialogBuilder = AlertDialog.Builder(this)
+//        alertDialogBuilder.setCancelable( false )
+//        val dialogView = layoutInflater.inflate(R.layout.model_init_dialog, null)
+//
+//        // Initialize the UI elements in R.layout.model_init_dialog
+//        val useNNApiCheckBox : CheckBox = dialogView.findViewById(R.id.useNNApi_checkbox)
+//
+//        val useGPUCheckBox : CheckBox = dialogView.findViewById(R.id.useGPU_checkbox)
+//        val initModelButton : Button = dialogView.findViewById(R.id.init_model_button)
+//        val closeButton : Button = dialogView.findViewById( R.id.close_button )
+//        val selectModelSpinner : Spinner = dialogView.findViewById(R.id.select_model_spinner)
+//
+//        alertDialogBuilder.setView(dialogView)
+//        val dialog = alertDialogBuilder.create()
+//        dialog.window?.setBackgroundDrawable( ColorDrawable(Color.TRANSPARENT ) )
+//        dialog.show()
         val alertDialogBuilder = AlertDialog.Builder(this)
-        alertDialogBuilder.setCancelable( false )
+        alertDialogBuilder.setCancelable(false)
         val dialogView = layoutInflater.inflate(R.layout.model_init_dialog, null)
 
-        // Initialize the UI elements in R.layout.model_init_dialog
-        val useNNApiCheckBox : CheckBox = dialogView.findViewById(R.id.useNNApi_checkbox)
-        val useGPUCheckBox : CheckBox = dialogView.findViewById(R.id.useGPU_checkbox)
-        val initModelButton : Button = dialogView.findViewById(R.id.init_model_button)
-        val closeButton : Button = dialogView.findViewById( R.id.close_button )
-        val selectModelSpinner : Spinner = dialogView.findViewById(R.id.select_model_spinner)
+// Initialize the UI elements in R.layout.model_init_dialog
+        val useNNApiCheckBox: CheckBox = dialogView.findViewById(R.id.useNNApi_checkbox)
+        useNNApiCheckBox.setVisibility(View.INVISIBLE)
+
+        val useGPUCheckBox: CheckBox = dialogView.findViewById(R.id.useGPU_checkbox)
+        useGPUCheckBox.setVisibility(View.INVISIBLE)
+
+        val initModelButton: Button = dialogView.findViewById(R.id.init_model_button)
+//        initModelButton.setVisibility(View.INVISIBLE)
+
+        val closeButton: Button = dialogView.findViewById(R.id.close_button)
+        closeButton.setVisibility(View.INVISIBLE)
+
+        val selectModelSpinner: Spinner = dialogView.findViewById(R.id.select_model_spinner)
+        selectModelSpinner.setVisibility(View.INVISIBLE)
+
+
+
+
 
         alertDialogBuilder.setView(dialogView)
         val dialog = alertDialogBuilder.create()
-        dialog.window?.setBackgroundDrawable( ColorDrawable(Color.TRANSPARENT ) )
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.show()
+
+
 
         // Set the data ( `modelNames` ) in the Spinner via a ArrayAdapter.
         val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, modelNames)
